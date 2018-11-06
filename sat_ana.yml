@@ -3,11 +3,12 @@
   vars:
     list_type:
       - 'default'
+#      - 'security'
 #      - 'overview'
 #      - 'kernel'
 #      - 'errata'
 #      - 'package'
-#    email_list: "true"
+    email_list: "false"
     email_sender: example@gmail.com
     email_pass:
     email_addr: example@gmail.com

@@ -1,13 +1,13 @@
 ---
 - name: Get security update information
-  shell: yum list all kernel
+  shell: yum updateinfo list security all
   args:
     warn: false
   register: security_info
 - name: Print security update informaton
   debug:
     var: security_info.stdout_lines
-- name: copy kernel list to file
+- name: copy security list to file
   blockinfile:
     marker: "## {{inventory_hostname}} : {mark} "
     marker_begin: "Begin security Info"

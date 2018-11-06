@@ -1,5 +1,6 @@
     - name: subscription manager gather information
       shell: subscription-manager identity
+      become: yes
       register: sub_id
     - name: set_fact
       set_fact:
@@ -7,9 +8,6 @@
     - name: set_fact
       set_fact:
         sub_id_cv: "{{sub_id.stdout | regex_search('(?<=Library/)(.*)')}}"
-    - name: debug
-      debug:
-        var: sub_id_cv
     - name: Default content_view_name check
       fail:
         msg: Default Organization View does not match hosts content_view

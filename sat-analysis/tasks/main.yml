@@ -7,5 +7,7 @@
   when: "'package' in list_type"
 - import_tasks: errata_list.yml
   when: "'errata' in list_type"
+- import_tasks: security_list.yml
+  when: "'security' in list_type"
 - import_tasks: email_lists.yml
   when: email_list == "true"

@@ -1,7 +1,4 @@
 ---
-    - name: debug
-      debug:
-        var: ansible_play_hosts
     - name: change the content view for all hosts in the inventory list
       uri:
         url: "https://{{base_Sat_URL}}/api/hosts/{{item}}"

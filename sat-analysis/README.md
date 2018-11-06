@@ -22,6 +22,7 @@ email_addr: recipient_email@email.com
 
 list_type:
   - none
+  - security
   - overview
   - kernel
   - package

@@ -2,7 +2,7 @@
       shell: sleep 5 && /sbin/shutdown -r now "Reboot required for updated kernel." && sleep 2
       async: 20
       poll: 0
-      when: reboot == true
+      become: yes
     - name: Wait for the reboot to complete
       wait_for_connection:
         connect_timeout: 20
