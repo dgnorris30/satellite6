@@ -1,0 +1,58 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    base_Sat_URL: FQDN
+ #   sat_username: admin
+ #   sat_password:
+    base_Tower_URL: FQ
+ #   tower_username: admin
+ #   tower_password: MeXMjjGSL24X
+    organization_id: 3
+    template_id: 5
+
+  tasks:
+  - name: gather content views
+    uri:
+      url: "https://{{base_Sat_URL}}/katello/api/organizations/{{organization_id}}/content_views"
+      method: GET
+      user: "{{sat_username}}"
+      password: "{{sat_password}}"
+      force_basic_auth: yes
+      validate_certs: no
+      header:
+        Content-Type: application/json
+        Accept: :application/json, version2
+      body: >
+        {
+        "page" : 1,
+        "per_page" : 1000,
+        "sort" : {}
+        }
+
+      status_code: 200
+      body_format: json
+    register: content_info
+
+  - name: set list of content views
+    set_fact:
+      content_view_list_temp: "{{content_info.json | json_query('results[*].name') | join('\n')}}"
+
+  - name: set list of content views
+    set_fact:
+      content_view_list: "{{content_view_list_temp | replace('\\n', '\n')}}"
+
+  - name: set tower survey
+    uri:
+      url: "https://{{base_Tower_URL}}/api/v2/job_templates/{{template_id}}/survey_spec/ "
+      method: POST
+      user: "{{tower_username}}"
+      password: "{{tower_password}}"
+      force_basic_auth: yes
+      validate_certs: no
+      body_format: json
+      header:
+        Content-Type: application/json
+        Accept: application/json, version2
+      body: {"description":"","name":"","spec":[{"question_description":"the content view to be used for patching hosts","min":null,"default":"Default Organization View","max":null,"required":true,"choices": "{{ content_view_list }}" ,"variable":"content_view_name","question_name":"Content View Selection","type":"multiplechoice"},{"required": true,"min": null,"default": "False","max": null,"question_description": "True or False","choices": "True\nFalse","new_question": true,"variable": "reboot","question_name": "Reboot after patching","type": "multiplechoice"} ]}
+      status_code: 200

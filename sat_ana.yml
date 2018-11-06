@@ -1,0 +1,15 @@
+---
+- hosts: all
+  vars:
+    list_type:
+      - 'default'
+#      - 'overview'
+#      - 'kernel'
+#      - 'errata'
+#      - 'package'
+    email_list: "true"
+    email_sender: example@gmail.com
+    email_pass:
+    email_addr: example@gmail.com
+  roles:
+  - sat-analysis

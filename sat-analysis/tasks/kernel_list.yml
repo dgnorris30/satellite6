@@ -1,0 +1,22 @@
+---
+- name: Get Kernel update information
+  shell: yum list all kernel
+  args:
+    warn: false
+  register: kernel_info
+- name: Print Kernel update informaton
+  debug:
+    var: kernel_info.stdout_lines
+- name: copy kernel list to file
+  blockinfile:
+    marker: "## {{inventory_hostname}} : {mark} "
+    marker_begin: "Begin Kernel Info"
+    marker_end: "End Kernel Info"
+    block: "{{ kernel_info.stdout }}"
+    create: yes
+    path: "/tmp/patch_analysis_{{email_addr}}.txt"
+    state: present
+    insertafter: EOF
+  delegate_to: localhost
+  connection: local
+  when: email_list == "true"

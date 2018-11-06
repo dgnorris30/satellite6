@@ -1,0 +1,22 @@
+---
+- name: Get list of all erratas
+  shell: yum updateinfo list available
+  args:
+    warn: false
+  register: errata_info
+- name: Print found erratas
+  debug:
+    var: errata_info.stdout_lines
+- name: copy errata list to file
+  blockinfile:
+    marker: "## {{inventory_hostname}} : {mark} "
+    marker_begin: "Errata List"
+    marker_end: "End Errata List"
+    block: "{{ errata_info.stdout }}"
+    create: yes
+    path: "/tmp/patch_analysis_{{email_addr}}.txt"
+    state: present
+    insertafter: EOF
+  delegate_to: localhost
+  connection: local
+  when: email_list == "true"

@@ -1,0 +1,12 @@
+---
+- hosts: all
+  vars:
+    base_Sat_URL: satellite.daniel.com
+    organization_id: 3
+    content_view_name: capsule
+    reboot: true
+#    sat_username: admin
+#    sat_password:
+  roles:
+  - content-view-change
+  - sat-patching

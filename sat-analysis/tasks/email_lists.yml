@@ -1,0 +1,26 @@
+---
+- name: check file exists
+  stat:
+    path: "/tmp/patch_analysis_{{email_addr}}.txt"
+  register: org_file
+
+- name: email analysis lists
+  mail:
+    host: smtp.gmail.com
+#    port: 587
+    port: 465
+#    secure: starttls
+    secure: always
+#    charset: utf-8
+#    sender: "{{email_sender}}"
+    from: "{{email_sender}}"
+    username: "{{email_sender}}"
+    password: "{{email_pass}}"
+    to: "{{email_addr}}"
+    subject: Pre-Patching Analysis
+    body: "Hello,
+      Attached is a file containing the patching information you requested for the hosts in your inventory"
+    attach: "/tmp/patch_analysis_{{email_addr}}.txt"
+  delegate_to: localhost
+  connection: local
+  when: org_file.stat.exists == true

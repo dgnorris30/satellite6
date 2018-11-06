@@ -1,0 +1,22 @@
+---
+- name: update info overview
+  shell: yum updateinfo
+  args:
+    warn: false
+  register: overview_info
+- name: Print overview
+  debug:
+    var: overview_info.stdout_lines
+- name: copy overview to file
+  blockinfile:
+    marker: "## {{inventory_hostname}} : {mark} "
+    marker_begin: "Overview Info"
+    marker_end: "End Overview"
+    block: "{{ overview_info.stdout }}"
+    create: yes
+    path: "/tmp/patch_analysis_{{email_addr}}.txt"
+    state: present
+    insertafter: EOF
+  delegate_to: localhost
+  connection: local
+  when: email_list == "true"

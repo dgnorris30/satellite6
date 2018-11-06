@@ -1,0 +1,24 @@
+    - name: change the content view for all hosts in the inventory list
+      uri:
+        url: "https://{{base_Sat_URL}}/api/hosts/{{item}}"
+        method: PUT
+        user: "{{sat_User}}"
+        password: "{{login_pw}}"
+        force_basic_auth: yes
+        validate_certs: no
+        header:
+          Content-Type: application/json
+          Accept: :application/json, version2
+        body: >
+          {"host": {"name": "{{item}}",	"organization_id": "{{organization_id}}",	"compute_attributes": {"volumes_attributes": {}}, "content_facet_attributes": {"content_view_id": "{{content_view_id}}"},	"subscription_facet_attributes": {}, "host_parameters_attributes": [], "interfaces_attributes": []}}
+        status_code: 200
+        body_format: json
+      register: content_data
+      delegate_to: localhost
+    - name: INFO
+      debug:
+        msg: "Host: {{content_data.json.name}}  Content-View: {{content_data.json.content_facet_attributes.content_view_name}}  Org: {{content_data.json.organization_name}}  IP: {{content_data.json.ip}}"
+    - name: fail incorrect Content Views
+      fail:
+        msg: "Host: {{data.json.name}} content view {{data.json.content_facet_attributes.content_view_name}} does not match input value {{content_view_name}}"
+      when: content_data.json.content_facet_attributes.content_view_name != content_view_name

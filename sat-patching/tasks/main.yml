@@ -1,0 +1,12 @@
+---
+#  - import_tasks: content_name_id.yml
+#    run_once: true
+#    sudo: no
+#  - include_tasks: content_view_change.yml
+#    with_items: "{{ansible_play_hosts}}"
+#    run_once: true
+
+  - import_tasks: content_view_check.yml
+  - import_tasks: yum_update.yml
+  - import_tasks: reboot.yml
+    when: reboot == true

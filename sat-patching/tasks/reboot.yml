@@ -1,0 +1,13 @@
+    - name: Rebooting host(s).
+      shell: sleep 5 && /sbin/shutdown -r now "Reboot required for updated kernel." && sleep 2
+      async: 20
+      poll: 0
+      when: reboot == true
+    - name: Wait for the reboot to complete
+      wait_for_connection:
+        connect_timeout: 20
+        sleep: 5
+        delay: 5
+        timeout: 300
+    - name: ping
+      ping:

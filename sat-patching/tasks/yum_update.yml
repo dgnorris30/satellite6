@@ -1,0 +1,13 @@
+    - name: sub-manager refresh
+      shell: subscription-manager refresh
+    - name: remove all cached yum data
+      file:
+        path: /var/cache/yum/
+        force: yes
+        state: absent
+    - name: yum clean all
+      shell: yum clean all
+    - name: Update all packages (This may take awhile...)
+      yum:
+        name: '*'
+        state: latest

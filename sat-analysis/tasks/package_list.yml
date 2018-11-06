@@ -1,0 +1,22 @@
+---
+- name: Get list of all packages available for update
+  shell: yum list available
+  args:
+    warn: false
+  register: packages_info
+- name: Print list of all packages available for update
+  debug:
+    var: packages_info.stdout_lines
+- name: copy overview to file
+  blockinfile:
+    marker: "## {{inventory_hostname}} : {mark} "
+    marker_begin: "Errata List"
+    marker_end: "End Errata List"
+    block: "{{ packages_info.stdout }}"
+    create: yes
+    path: "/tmp/patch_analysis_{{email_addr}}.txt"
+    state: present
+    insertafter: EOF
+  delegate_to: localhost
+  connection: local
+  when: email_list == "true"

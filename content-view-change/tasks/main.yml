@@ -1,0 +1,9 @@
+---
+  - import_tasks: content_name_id.yml
+    delegate_to: localhost
+    connection: local
+    run_once: true
+  - include_tasks: content_view_change.yml
+    with_items: "{{ansible_play_hosts}}"
+    delegate_to: localhost
+    run_once: true

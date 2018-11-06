@@ -1,0 +1,20 @@
+    - name: subscription manager gather information
+      shell: subscription-manager identity
+      register: sub_id
+    - name: set_fact
+      set_fact:
+        sub_id_cv_default: "{{sub_id.stdout | regex_search('(Library.*$)')}}"
+    - name: set_fact
+      set_fact:
+        sub_id_cv: "{{sub_id.stdout | regex_search('(?<=Library/)(.*)')}}"
+    - name: debug
+      debug:
+        var: sub_id_cv
+    - name: Default content_view_name check
+      fail:
+        msg: Default Organization View does not match hosts content_view
+      when: content_view_name == "Default Organization View" and sub_id_cv_default != 'Library'
+    - name: content_view_name check
+      fail:
+        msg: "selected content_view: {{content_view_name}} does not match hosts content_view: {{sub_id_cv}}"
+      when: content_view_name != "Default Organization View" and sub_id_cv != content_view_name
