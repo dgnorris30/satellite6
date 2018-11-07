@@ -5,8 +5,8 @@
     organization_id: 3
     content_view_name: capsule
     reboot: false
-#    sat_username: admin
-#    sat_password:
+    sat_username: admin
+    sat_password: B-ball30
   roles:
-#  - content-view-change
+
   - sat-patching
