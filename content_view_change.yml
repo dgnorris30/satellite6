@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  become: true
   vars:
     base_Sat_URL: satellite.daniel.com
     organization_id: 3
