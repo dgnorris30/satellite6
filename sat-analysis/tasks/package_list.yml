@@ -4,6 +4,7 @@
   args:
     warn: false
   register: packages_info
+  ignore_errors: true
 - name: Print list of all packages available for update
   debug:
     var: packages_info.stdout_lines
