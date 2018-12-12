@@ -1,0 +1,8 @@
+galaxy_info:
+  author: Daniel Norris
+  description: Pre-patching analysis
+  company: RedHat
+dependencies:
+  - sat-tower-variable-update
+  - content-view-change
+  - sat-patching

@@ -1,0 +1,14 @@
+  - name: set tower survey
+    uri:
+      url: "https://{{base_Tower_URL}}/api/v2/job_templates/{{template_id}}/survey_spec/ "
+      method: POST
+      user: "{{tower_username}}"
+      password: "{{tower_password}}"
+      force_basic_auth: yes
+      validate_certs: no
+      body_format: json
+      header:
+        Content-Type: application/json
+        Accept: application/json, version2
+      body: {"survey_enabled":true,"description":"","name":"","spec":[{"question_description":"the content view to be used for patching hosts","min":null,"default":"Default Organization View","max":null,"required":true,"choices": "{{ content_view_list }}" ,"variable":"content_view_name","question_name":"Content View Selection","type":"multiplechoice"} ]}
+      status_code: 200

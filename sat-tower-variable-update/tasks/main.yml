@@ -1,0 +1,3 @@
+---
+- import_tasks: get-content_views.yml
+- import_tasks: post-tower-survey.yml

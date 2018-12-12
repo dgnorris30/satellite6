@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+#    base_Sat_URL: satellite.example.com
+#    sat_username: admin
+#    sat_password: password1
+#    base_Tower_URL: tower.example.com
+#    tower_username: admin
+#    tower_password: password1
+    organization_id: 3
+#    template_id: 25
+
+  roles:
+  - sat-tower-variable-update

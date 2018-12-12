@@ -1,0 +1,9 @@
+---
+  base_Sat_URL:
+#  sat_username: admin
+#  sat_password:
+  base_Tower_URL:
+#  tower_username: admin
+#  tower_password:
+  organization_id: 
+#  template_id: 15
