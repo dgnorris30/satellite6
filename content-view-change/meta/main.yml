@@ -1,5 +1,9 @@
 ---
 galaxy_info:
   author: Daniel Norris
-  description: change content view and update hosts
+  description: this role is used to change the satellite content view a host uses for yum content
   company: RedHat
+  dependencies:
+    - sat-tower-variable-update
+    - sat-analysis
+    - sat-patching

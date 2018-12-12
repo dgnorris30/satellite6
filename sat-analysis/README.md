@@ -34,6 +34,7 @@ Complimentary roles
 ------------
 
 content-view-change
+sat-tower-variable-update
 sat-patching
 
 
@@ -47,10 +48,10 @@ Example Playbook
         sat_username: admin
         sat_password: example
         organization_id: 3
-        content_view_name: default
+        content_view_name: Default Organization View
         list_type:
           - overview
-          - Kernel
+          - package
         email_list: true
         email_sender: example@email.com
         email_pass: password

@@ -1,2 +1,7 @@
 ---
-# defaults file for sat-analysis
+    list_type:
+      - 'none'
+    email_list: "false"
+    email_sender:
+    email_pass:
+    email_addr: 

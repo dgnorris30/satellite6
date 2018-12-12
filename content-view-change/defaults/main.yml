@@ -1,5 +1,4 @@
 ---
 reboot: false
 base_Sat_URL:
-content_view_name: Default Organization View
 organization_id: 3

@@ -1,15 +1,15 @@
 ---
 - hosts: all
   become: true
-  vars:
-    list_type:
-      - 'none'
+#  vars:
+#    list_type:
+#      - 'none'
 #      - 'security'
 #      - 'overview'
 #      - 'kernel'
 #      - 'errata'
 #      - 'package'
-    email_list: "false"
+#    email_list: "false"
 #    email_sender: example@gmail.com
 #    email_pass:
 #    email_addr: example@gmail.com

@@ -2,14 +2,14 @@
 - hosts: localhost
   connection: local
   vars:
-    base_Sat_URL: FQDN
- #   sat_username: admin
- #   sat_password:
-    base_Tower_URL: FQDN
- #   tower_username: admin
- #   tower_password:
-    organization_id: 3
-    template_id: 15
+#    base_Sat_URL: FQDN
+#    sat_username: admin
+#    sat_password:
+#    base_Tower_URL: FQDN
+#    tower_username: admin
+#    tower_password:
+#    organization_id: 3
+#    template_id: 15
 
   tasks:
   - name: gather content views
