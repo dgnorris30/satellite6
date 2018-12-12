@@ -1,8 +1,8 @@
 galaxy_info:
   author: Daniel Norris
-  description: Pre-patching analysis
+  description: This role is used in Ansible Tower to automatically create an updated survey with the latest Content Views from satellite for the change-content-view role
   company: RedHat
 dependencies:
-  - sat-tower-variable-update
   - content-view-change
+  - sat-analysis
   - sat-patching
