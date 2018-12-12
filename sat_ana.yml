@@ -1,16 +1,17 @@
 ---
 - hosts: all
+  become: true
   vars:
     list_type:
-      - 'default'
+      - 'none'
 #      - 'security'
 #      - 'overview'
 #      - 'kernel'
 #      - 'errata'
 #      - 'package'
     email_list: "false"
-    email_sender: example@gmail.com
-    email_pass:
-    email_addr: example@gmail.com
+#    email_sender: example@gmail.com
+#    email_pass:
+#    email_addr: example@gmail.com
   roles:
   - sat-analysis

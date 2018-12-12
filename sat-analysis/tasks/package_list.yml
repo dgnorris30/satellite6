@@ -1,6 +1,6 @@
 ---
 - name: Get list of all packages available for update
-  shell: yum list available
+  shell: yum check-update
   args:
     warn: false
   register: packages_info
@@ -10,8 +10,8 @@
 - name: copy overview to file
   blockinfile:
     marker: "## {{inventory_hostname}} : {mark} "
-    marker_begin: "Errata List"
-    marker_end: "End Errata List"
+    marker_begin: "Package List"
+    marker_end: "End Package List"
     block: "{{ packages_info.stdout }}"
     create: yes
     path: "/tmp/patch_analysis_{{email_addr}}.txt"

@@ -5,11 +5,11 @@
     base_Sat_URL: FQDN
  #   sat_username: admin
  #   sat_password:
-    base_Tower_URL: FQ
+    base_Tower_URL: FQDN
  #   tower_username: admin
- #   tower_password: MeXMjjGSL24X
+ #   tower_password:
     organization_id: 3
-    template_id: 5
+    template_id: 15
 
   tasks:
   - name: gather content views
@@ -54,5 +54,5 @@
       header:
         Content-Type: application/json
         Accept: application/json, version2
-      body: {"description":"","name":"","spec":[{"question_description":"the content view to be used for patching hosts","min":null,"default":"Default Organization View","max":null,"required":true,"choices": "{{ content_view_list }}" ,"variable":"content_view_name","question_name":"Content View Selection","type":"multiplechoice"},{"required": true,"min": null,"default": "False","max": null,"question_description": "True or False","choices": "True\nFalse","new_question": true,"variable": "reboot","question_name": "Reboot after patching","type": "multiplechoice"} ]}
+      body: {"survey_enable":true,"description":"","name":"","spec":[{"question_description":"the content view to be used for patching hosts","min":null,"default":"Default Organization View","max":null,"required":true,"choices": "{{ content_view_list }}" ,"variable":"content_view_name","question_name":"Content View Selection","type":"multiplechoice"},{"required": true,"min": null,"default": "False","max": null,"question_description": "True or False","choices": "True\nFalse","new_question": true,"variable": "reboot","question_name": "Reboot after patching","type": "multiplechoice"} ]}
       status_code: 200
