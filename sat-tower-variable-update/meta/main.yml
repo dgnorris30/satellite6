@@ -2,7 +2,7 @@ galaxy_info:
   author: Daniel Norris
   description: This role is used in Ansible Tower to automatically create an updated survey with the latest Content Views from satellite for the change-content-view role
   company: RedHat
-complimentary roles:
-  - content-view-change
-  - sat-analysis
-  - sat-patching
+  complimentary_roles:
+    - content-view-change
+    - sat-analysis
+    - sat-patching

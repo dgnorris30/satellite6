@@ -2,7 +2,7 @@ galaxy_info:
   author: Daniel Norris
   description: change content view and update hosts
   company: RedHat
-Complimentary roles:
+  complimentary_roles:
     - sat-tower-variable-update
     - content-view-change
     - sat-analysis
