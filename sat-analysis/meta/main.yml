@@ -2,7 +2,7 @@ galaxy_info:
   author: Daniel Norris
   description: Pre-patching analysis
   company: RedHat
-  dependencies:
+Complimentary roles:
     - sat-tower-variable-update
     - content-view-change
     - sat-patching
